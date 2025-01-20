@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sayı Tahmin Oyunu</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="theme-switch">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>Sayı Tahmin Oyunu</h1>
+            <button id="help-btn" class="icon-btn" title="Nasıl Oynanır">
+                <i class="fas fa-question-circle"></i>
+            </button>
+        </header>
+
+        <div class="game-settings">
+            <div class="difficulty">
+                <select id="difficulty-select">
+                    <option value="easy">Kolay (8 deneme)</option>
+                    <option value="medium" selected>Orta (6 deneme)</option>
+                    <option value="hard">Zor (4 deneme)</option>
+                </select>
+            </div>
+            <div class="digit-count">
+                <select id="digit-count-select">
+                    <option value="3">3 Basamak</option>
+                    <option value="4" selected>4 Basamak</option>
+                    <option value="5">5 Basamak</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="game-info">
+            <div class="stats-row">
+                <div class="stat">
+                    <span id="attempts">6</span>
+                    <label>Kalan Hak</label>
+                </div>
+                <div class="stat">
+                    <span id="current-score">0</span>
+                    <label>Puan</label>
+                </div>
+            </div>
+            <div class="hint-box">
+                <p id="current-hint">İpucu almak için tıklayın!</p>
+                <button id="hint-btn" class="small-btn">
+                    <i class="fas fa-lightbulb"></i> İpucu (3)
+                </button>
+            </div>
+        </div>
+
+        <div class="legend">
+            <div class="legend-item">
+                <span class="dot correct"></span>
+                <p>Doğru sayı, doğru yer</p>
+            </div>
+            <div class="legend-item">
+                <span class="dot wrong-position"></span>
+                <p>Doğru sayı, yanlış yer</p>
+            </div>
+            <div class="legend-item">
+                <span class="dot incorrect"></span>
+                <p>Yanlış sayı</p>
+            </div>
+        </div>
+
+        <div class="guess-area">
+            <div class="input-area">
+                <input type="number" class="digit-input" maxlength="1" min="0" max="9">
+                <input type="number" class="digit-input" maxlength="1" min="0" max="9">
+                <input type="number" class="digit-input" maxlength="1" min="0" max="9">
+                <input type="number" class="digit-input" maxlength="1" min="0" max="9">
+            </div>
+            <button id="guess-btn">Tahmin Et</button>
+        </div>
+
+        <div class="results" id="results">
+            <!-- Tahminler buraya eklenecek -->
+        </div>
+
+        <div class="controls">
+            <button id="new-game-btn">Yeni Oyun</button>
+            <button id="sound-btn">
+                <i class="fas fa-volume-up"></i>
+            </button>
+        </div>
+
+        <div class="game-stats" id="game-stats" style="display: none;">
+            <h3>Oyun İstatistikleri</h3>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span id="accuracy">0%</span>
+                    <label>Doğruluk Oranı</label>
+                </div>
+                <div class="stat-item">
+                    <span id="avg-attempts">0</span>
+                    <label>Ortalama Deneme</label>
+                </div>
+                <div class="stat-item">
+                    <span id="total-score">0</span>
+                    <label>Toplam Puan</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Nasıl Oynanır Modal -->
+    <div id="help-modal" class="modal">
+        <div class="modal-content">
+            <h2>Nasıl Oynanır?</h2>
+            <div class="help-content">
+                <p>4 basamaklı gizli sayıyı bulmaya çalışın!</p>
+                <ul>
+                    <li>Her rakam sadece bir kez kullanılır (0-9)</li>
+                    <li>Her tahminden sonra ipucu alırsınız</li>
+                    <li>🟢 Yeşil: Doğru rakam, doğru yer</li>
+                    <li>🟡 Sarı: Doğru rakam, yanlış yer</li>
+                    <li>🔴 Kırmızı: Yanlış rakam</li>
+                </ul>
+                <h3>Klavye Kısayolları</h3>
+                <ul class="shortcuts">
+                    <li><kbd>Enter</kbd> Tahmin et</li>
+                    <li><kbd>H</kbd> İpucu</li>
+                    <li><kbd>Tab</kbd> Rakamlar arası geçiş</li>
+                </ul>
+            </div>
+            <button class="close-btn">Kapat</button>
+        </div>
+    </div>
+
+    <!-- Ses dosyaları -->
+    <audio id="tick-sound" src="https://cdn.freesound.org/previews/242/242501_4414128-lq.mp3" preload="auto"></audio>
+    <audio id="win-sound" src="https://cdn.freesound.org/previews/270/270402_5123851-lq.mp3" preload="auto"></audio>
+    <audio id="lose-sound" src="https://cdn.freesound.org/previews/76/76376_877451-lq.mp3" preload="auto"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html> 

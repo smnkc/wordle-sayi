@@ -1,0 +1,16 @@
+{
+    "name": "Sayı Tahmin Oyunu",
+    "short_name": "Sayı Tahmin",
+    "description": "4 basamaklı sayı tahmin oyunu",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#faf8ef",
+    "theme_color": "#faf8ef",
+    "icons": [
+        {
+            "src": "icon.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        }
+    ]
+} 

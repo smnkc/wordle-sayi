@@ -1,0 +1,554 @@
+:root {
+    --primary-color: #2196f3;
+    --success-color: #4CAF50;
+    --warning-color: #FFC107;
+    --error-color: #F44336;
+    --text-color: #333;
+    --bg-color: #f0f0f0;
+    --card-bg: #fff;
+    --border-color: #ddd;
+}
+
+[data-theme="dark"] {
+    --text-color: #fff;
+    --bg-color: #121212;
+    --card-bg: #1e1e1e;
+    --border-color: #333;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.container {
+    background-color: var(--card-bg);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    max-width: 500px;
+    width: 90%;
+    transition: background-color 0.3s ease;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+h1 {
+    color: var(--text-color);
+    font-size: 1.8rem;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--text-color);
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: transform 0.2s ease;
+}
+
+.icon-btn:hover {
+    transform: scale(1.1);
+}
+
+.difficulty {
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+select {
+    padding: 0.5rem 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: 5px;
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.game-info {
+    margin-bottom: 1.5rem;
+}
+
+.stats-row {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background-color: var(--bg-color);
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.stat {
+    text-align: center;
+    padding: 0.5rem 1rem;
+    min-width: 100px;
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease;
+}
+
+.stat:hover {
+    transform: translateY(-2px);
+}
+
+.stat span {
+    display: block;
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 0.3rem;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+.stat label {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--text-color);
+    opacity: 0.9;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.hint-box {
+    background-color: var(--bg-color);
+    padding: 1rem;
+    border-radius: 5px;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.small-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 0.5rem;
+}
+
+.legend {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: none;
+}
+
+.dot.correct {
+    background-color: var(--success-color);
+}
+
+.dot.wrong-position {
+    background-color: var(--warning-color);
+}
+
+.dot.incorrect {
+    background-color: var(--error-color);
+}
+
+.input-area {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.digit-input {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    text-align: center;
+    border: 2px solid var(--border-color);
+    border-radius: 5px;
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    outline: none;
+    -moz-appearance: textfield;
+}
+
+.digit-input::-webkit-outer-spin-button,
+.digit-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.digit-input:focus {
+    border-color: var(--primary-color);
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+.controls {
+    display: flex;
+    gap: 1rem;
+}
+
+#new-game-btn {
+    flex: 1;
+    background-color: var(--success-color);
+}
+
+#sound-btn {
+    width: auto;
+    padding: 0.8rem 1.2rem;
+}
+
+.results {
+    margin: 1.5rem 0;
+    min-height: 100px;
+}
+
+.guess-row {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+    animation: slideIn 0.3s ease;
+}
+
+.guess-box {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    border: 2px solid var(--border-color);
+    border-radius: 5px;
+    color: white;
+}
+
+.guess-box.correct {
+    background-color: var(--success-color);
+    border-color: var(--success-color);
+}
+
+.guess-box.wrong-position {
+    background-color: var(--warning-color);
+    border-color: var(--warning-color);
+    color: black;
+}
+
+.guess-box.incorrect {
+    background-color: var(--error-color);
+    border-color: var(--error-color);
+}
+
+.theme-switch {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.5rem;
+    background-color: var(--card-bg);
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    z-index: 100;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background-color: var(--card-bg);
+    padding: 2rem;
+    border-radius: 10px;
+    max-width: 500px;
+    width: 90%;
+    color: var(--text-color);
+}
+
+.help-content {
+    margin: 1.5rem 0;
+}
+
+.help-content ul {
+    list-style: none;
+    margin: 1rem 0;
+}
+
+.help-content li {
+    margin-bottom: 0.5rem;
+}
+
+kbd {
+    background-color: var(--bg-color);
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+    border: 1px solid var(--border-color);
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Mobil uyumluluk */
+@media (max-width: 400px) {
+    .digit-input, .guess-box {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+
+    .legend {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+} 
+
+/* Animasyonlar */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes celebrate {
+    0% { transform: scale(1); }
+    25% { transform: scale(1.1) rotate(5deg); }
+    50% { transform: scale(1.1) rotate(-5deg); }
+    75% { transform: scale(1.1) rotate(5deg); }
+    100% { transform: scale(1); }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+/* Animasyon sınıfları */
+.shake {
+    animation: shake 0.5s ease-in-out;
+}
+
+.bounce {
+    animation: bounce 0.3s ease-in-out;
+}
+
+.celebrate {
+    animation: celebrate 1s ease-in-out;
+}
+
+.fade-in-up {
+    animation: fadeInUp 0.5s ease-out;
+}
+
+.fade-out {
+    animation: fadeOut 0.5s ease-out;
+}
+
+/* Tahmin kutusu animasyonları */
+.guess-box {
+    transition: all 0.3s ease;
+}
+
+.guess-box.correct {
+    animation: bounce 0.5s ease-in-out;
+}
+
+.guess-box.wrong-position {
+    animation: shake 0.5s ease-in-out;
+}
+
+/* Yeni tahmin satırı animasyonu */
+.guess-row {
+    animation: fadeInUp 0.5s ease-out;
+}
+
+/* Kazanma/Kaybetme durumu için container animasyonu */
+.container.win {
+    animation: celebrate 1s ease-in-out;
+}
+
+.container.lose {
+    animation: shake 0.5s ease-in-out;
+}
+
+/* Yeni animasyonlar */
+@keyframes correct-guess {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2) rotate(10deg); }
+    100% { transform: scale(1) rotate(0); }
+}
+
+@keyframes wrong-guess {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-10px) rotate(-5deg); }
+    40% { transform: translateX(10px) rotate(5deg); }
+    60% { transform: translateX(-10px) rotate(-5deg); }
+    80% { transform: translateX(10px) rotate(5deg); }
+}
+
+@keyframes stats-appear {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Oyun ayarları */
+.game-settings {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.digit-count {
+    text-align: center;
+}
+
+/* İstatistikler */
+.game-stats {
+    margin-top: 2rem;
+    padding: 1rem;
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    animation: stats-appear 0.5s ease-out;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 0.5rem;
+    background-color: var(--bg-color);
+    border-radius: 5px;
+}
+
+.stat-item span {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.stat-item label {
+    font-size: 0.8rem;
+    color: var(--text-color);
+    opacity: 0.8;
+}
+
+/* Tahmin kutusu animasyonları */
+.guess-box.correct {
+    animation: correct-guess 0.8s ease-out;
+}
+
+.guess-box.wrong-position {
+    animation: wrong-guess 0.8s ease-in-out;
+}
+
+/* Mobil uyumluluk */
+@media (max-width: 400px) {
+    .game-settings {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+} 
